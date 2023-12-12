@@ -1,0 +1,51 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="450" Width="300" MinWidth="300" MinHeight="450" MaxWidth="300" MaxHeight="450">
+    <Grid>
+        <Button x:Name="Vhod" Click="Vhod_Click" Content="Войти" FontFamily="Bahnschrift SemiLight" FontSize="16" Margin="24,353,0,0" RenderTransformOrigin="1,0" VerticalContentAlignment="Center" BorderBrush="{x:Null}" OpacityMask="Black" Foreground="White" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="114" Background="Black" IsEnabled="False">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <TextBox x:Name="LOGIN" Margin="0,60,0,0" TextWrapping="Wrap" Text="Login" BorderThickness="0,0,0,0" FontFamily="Bahnschrift SemiBold" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Black" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Width="174" MaxWidth="174" MaxHeight="43.2066666666667" IsEnabled="False" VerticalScrollBarVisibility="Disabled"/>
+        <TextBox x:Name="LogBox" KeyUp="LogBlock_Up" HorizontalAlignment="Center" Margin="0,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202" Height="35" VerticalContentAlignment="Center"/>
+        <PasswordBox x:Name="PassBox" KeyUp="PassBlock_Up" HorizontalAlignment="Center" Margin="0,219,0,0" VerticalAlignment="Top" Width="202" Height="35" VerticalContentAlignment="Center" IsEnabled="False"/>
+        <TextBox x:Name="LogText" Margin="42,144,188,0" TextWrapping="Wrap" Text="Логин:" BorderThickness="0,0,0,0" FontFamily="Bahnschrift SemiBold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Black" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" MaxWidth="174" MaxHeight="43.2066666666667" IsEnabled="False" VerticalScrollBarVisibility="Disabled" />
+        <TextBox x:Name="PassText" Margin="36,202,182,0" TextWrapping="Wrap" Text="Пароль:" BorderThickness="0,0,0,0" FontFamily="Bahnschrift SemiBold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Black" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" MaxWidth="174" MaxHeight="43.2066666666667" IsEnabled="False" VerticalScrollBarVisibility="Disabled"/>
+        <Button x:Name="Otmena" Click="Otmena_Click" Content="Отмена" FontFamily="Bahnschrift SemiLight" FontSize="16" Margin="156,353,0,0" RenderTransformOrigin="1,0" VerticalContentAlignment="Center" BorderBrush="{x:Null}" OpacityMask="Black" Foreground="White" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="114" Background="Black">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <TextBox x:Name="CodBox" KeyUp="CodeBlock_Up" HorizontalAlignment="Center" Margin="0,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202" Height="35" VerticalContentAlignment="Center" IsEnabled="False"/>
+        <TextBox x:Name="cod" Margin="42,262,207,0" TextWrapping="Wrap" Text="Код:" BorderThickness="0,0,0,0" FontFamily="Bahnschrift SemiBold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Black" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" MaxWidth="174" MaxHeight="43.2066666666667" IsEnabled="False" VerticalScrollBarVisibility="Disabled" />
+        <TextBlock x:Name="CodeBlock" HorizontalAlignment="Left" Margin="87,262,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="38" FontFamily="Bahnschrift" Foreground="#FF676767" Height="17" FontSize="14"/>
+        <Button x:Name="Reloadd" Content="Обновить" Click="Reload_Click" HorizontalAlignment="Left" Margin="184,256,0,0" VerticalAlignment="Top" IsEnabled="False" Height="20" Width="58" Background="#FFDDDDDD" FontFamily="Bahnschrift Light"/>
+
+    </Grid>
+</Window>

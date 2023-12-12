@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbkursModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoadCapacity" Type="Double" Nullable="false" />
+    <NavigationProperty Name="CarManager" Relationship="Self.FK_CarManager_Car" FromRole="Car" ToRole="CarManager" />
+  </EntityType>
+  <EntityType Name="CarManager">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CarID" Type="Int32" />
+    <NavigationProperty Name="Car" Relationship="Self.FK_CarManager_Car" FromRole="CarManager" ToRole="Car" />
+    <NavigationProperty Name="ClientManager" Relationship="Self.FK_ClientManager_CarManager" FromRole="CarManager" ToRole="ClientManager" />
+  </EntityType>
+  <EntityType Name="ClientManager">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="TransportationOrder" Type="Int32" />
+    <NavigationProperty Name="CarManager" Relationship="Self.FK_ClientManager_CarManager" FromRole="ClientManager" ToRole="CarManager" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_ClientManager_Customer" FromRole="ClientManager" ToRole="Customer" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_ClientManager_Order" FromRole="ClientManager" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateOfBirthday" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="ClientManager" Relationship="Self.FK_ClientManager_Customer" FromRole="Customer" ToRole="ClientManager" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Weight" Type="Double" Nullable="false" />
+    <Property Name="DateOfOrder" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ClientManager" Relationship="Self.FK_ClientManager_Order" FromRole="Order" ToRole="ClientManager" />
+    <Property Name="NameOfOrder" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Role" FromRole="Role" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_CarManager_Car">
+    <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
+    <End Role="CarManager" Type="Self.CarManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CarManager">
+        <PropertyRef Name="CarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientManager_CarManager">
+    <End Role="CarManager" Type="Self.CarManager" Multiplicity="0..1" />
+    <End Role="ClientManager" Type="Self.ClientManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarManager">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ClientManager">
+        <PropertyRef Name="TransportationOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientManager_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="ClientManager" Type="Self.ClientManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ClientManager">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientManager_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="ClientManager" Type="Self.ClientManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ClientManager">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbkursEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Car" EntityType="Self.Car" />
+    <EntitySet Name="CarManager" EntityType="Self.CarManager" />
+    <EntitySet Name="ClientManager" EntityType="Self.ClientManager" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" />
+    <EntitySet Name="Order" EntityType="Self.Order" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_CarManager_Car" Association="Self.FK_CarManager_Car">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="CarManager" EntitySet="CarManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientManager_CarManager" Association="Self.FK_ClientManager_CarManager">
+      <End Role="CarManager" EntitySet="CarManager" />
+      <End Role="ClientManager" EntitySet="ClientManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientManager_Customer" Association="Self.FK_ClientManager_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="ClientManager" EntitySet="ClientManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientManager_Order" Association="Self.FK_ClientManager_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="ClientManager" EntitySet="ClientManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

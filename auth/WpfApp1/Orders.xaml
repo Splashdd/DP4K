@@ -1,0 +1,67 @@
+﻿<Page x:Class="WpfApp1.Orders"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Orders">
+
+    <Grid x:Name="Orders1" Background="White">
+        <DataGrid AutoGenerateColumns="False" x:Name="StatementGrid" IsReadOnly="True" FontSize="18" Margin="0,0,0,50">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="auto" Binding="{Binding ID}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО заказчика" Width="auto" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Вес/КГ" Width="auto" Binding="{Binding Weight}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата заказа" Width="auto" Binding="{Binding DateOfOrder, StringFormat={}{0:dd.}{0:MM.}{0:yyyy}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название заказа" Width="auto" Binding="{Binding NameOfOrder}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="Redakt" Click="Redakt_Click" Content="Редактировать" FontFamily="Bahnschrift SemiLight" FontSize="16" Margin="0,0,10,3" RenderTransformOrigin="1,0" VerticalContentAlignment="Center" BorderBrush="{x:Null}" OpacityMask="Black" Foreground="White" Background="Black" Height="42" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="Add" Click="Add_Click" Content="Добавить" FontFamily="Bahnschrift SemiLight" FontSize="16" Margin="0,0,165,3" RenderTransformOrigin="1,0" VerticalContentAlignment="Center" BorderBrush="{x:Null}" OpacityMask="Black" Foreground="White" Background="Black" Height="42" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="deletett" Click="Deletett_Click" Content="Удалить" FontFamily="Bahnschrift SemiLight" FontSize="16" Margin="0,0,320,3" RenderTransformOrigin="1,0" VerticalContentAlignment="Center" BorderBrush="{x:Null}" OpacityMask="Black" Foreground="White" Background="Black" Height="42" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="150">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+    </Grid>
+</Page>
